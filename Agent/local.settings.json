@@ -1,0 +1,6 @@
+{
+  "Values": {
+    "UIPATH_CHAT_MODEL": "gpt-5.2-2025-12-11",
+    "MAX_TURNS": "30"
+  }
+}

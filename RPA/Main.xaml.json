@@ -1,0 +1,33 @@
+{
+  "DisplayName": "Main",
+  "Tooltip": null,
+  "HelpLink": null,
+  "Color": null,
+  "OriginalIconFileName": null,
+  "Arguments": [
+    {
+      "Name": "url",
+      "DisplayName": "url",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/8d3237c0-5ca3-4dce-85ef-5497c83505f7/ce931ab9/20260304_policies_hoiku_shugyoshomeisho_02.xlsx",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "csv",
+      "DisplayName": "csv",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "input\\sample_data.csv",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    }
+  ]
+}

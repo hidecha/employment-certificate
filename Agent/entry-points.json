@@ -1,0 +1,138 @@
+{
+    "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+    "$id": "entry-points.json",
+    "entryPoints": [
+        {
+            "filePath": "agent",
+            "uniqueId": "c97d368d-2feb-4fd3-b183-0963ec2949a1",
+            "type": "agent",
+            "input": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "title": "URL",
+                        "description": "Excel形式の就労証明書のダウンロードURL",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "url"
+                ]
+            },
+            "output": {
+                "type": "object",
+                "properties": {
+                    "municipality": {
+                        "title": "Municipality",
+                        "description": "自治体名（推測不可の場合は「不明」）",
+                        "default": "不明",
+                        "type": "string"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "description": "テキスト入力フィールド名→セルアドレスのマッピング",
+                        "default": {},
+                        "type": "object"
+                    },
+                    "checkbox": {
+                        "title": "Checkbox",
+                        "description": "チェックボックス名→セルアドレスのマッピング",
+                        "default": {},
+                        "type": "object"
+                    },
+                    "error": {
+                        "title": "Error",
+                        "description": "エラー内容（正常時はnull）",
+                        "default": null,
+                        "type": "string"
+                    },
+                    "warning": {
+                        "title": "Warning",
+                        "description": "警告内容（不足フィールドがある場合等。正常時はnull）",
+                        "default": null,
+                        "type": "string"
+                    }
+                },
+                "required": ["error"]
+            },
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "__start__",
+                        "name": "__start__",
+                        "type": "__start__",
+                        "subgraph": null,
+                        "metadata": {}
+                    },
+                    {
+                        "id": "node_skill",
+                        "name": "node_skill",
+                        "type": "node",
+                        "subgraph": null,
+                        "metadata": {"description": "Excelダウンロード＆解析"}
+                    },
+                    {
+                        "id": "node_municipality",
+                        "name": "node_municipality",
+                        "type": "node",
+                        "subgraph": null,
+                        "metadata": {"description": "自治体名解決"}
+                    },
+                    {
+                        "id": "node_evaluator",
+                        "name": "node_evaluator",
+                        "type": "node",
+                        "subgraph": null,
+                        "metadata": {"description": "結果検証"}
+                    },
+                    {
+                        "id": "node_repair",
+                        "name": "node_repair",
+                        "type": "node",
+                        "subgraph": null,
+                        "metadata": {"description": "不足フィールド警告"}
+                    },
+                    {
+                        "id": "__end__",
+                        "name": "__end__",
+                        "type": "__end__",
+                        "subgraph": null,
+                        "metadata": {}
+                    }
+                ],
+                "edges": [
+                    {
+                        "source": "__start__",
+                        "target": "node_skill",
+                        "label": null
+                    },
+                    {
+                        "source": "node_skill",
+                        "target": "node_municipality",
+                        "label": null
+                    },
+                    {
+                        "source": "node_municipality",
+                        "target": "node_evaluator",
+                        "label": null
+                    },
+                    {
+                        "source": "node_evaluator",
+                        "target": "node_repair",
+                        "label": "repair"
+                    },
+                    {
+                        "source": "node_evaluator",
+                        "target": "__end__",
+                        "label": "end"
+                    },
+                    {
+                        "source": "node_repair",
+                        "target": "__end__",
+                        "label": null
+                    }
+                ]
+            }
+        }
+    ]
+}

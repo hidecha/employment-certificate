@@ -1,0 +1,14 @@
+flowchart TB
+  __start__([__start__])
+  node_skill["node_skill<br>(Excel DL & 解析)"]
+  node_municipality["node_municipality<br>(自治体名解決)"]
+  node_evaluator["node_evaluator<br>(結果検証)"]
+  node_repair["node_repair<br>(不足項目警告)"]
+  __end__([__end__])
+
+  __start__ --> node_skill
+  node_skill --> node_municipality
+  node_municipality --> node_evaluator
+  node_evaluator -- "repair<br>(不足あり)" --> node_repair
+  node_evaluator -- "end<br>(修復不要)" --> __end__
+  node_repair --> __end__

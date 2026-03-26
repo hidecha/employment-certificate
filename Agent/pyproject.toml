@@ -1,0 +1,13 @@
+[project]
+name = "analyze-shuroushomei"
+version = "1.0.0"
+description = "就労証明書Excelファイル解析エージェント"
+authors = [{ name = "hidecha" }]
+dependencies = [
+    "uipath-langchain>=0.0.85",
+    "langchain-core>=0.3.0",
+    "langgraph>=0.2.0",
+    "pydantic>=2.0.0",
+    "openpyxl>=3.1.0"
+]
+requires-python = ">=3.11"
