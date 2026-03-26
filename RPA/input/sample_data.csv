@@ -198,8 +198,8 @@ checkbox,入所内定時育休短縮可否_否,0
 checkbox,育休延長可否_可,0
 checkbox,育休延長可否_否,0
 checkbox,保護者記載欄_利用中1,0
-checkbox,保護者記載欄_利用申込中1,1
+checkbox,保護者記載欄_申込中1,1
 checkbox,保護者記載欄_利用中2,0
-checkbox,保護者記載欄_利用申込中2,0
+checkbox,保護者記載欄_申込中2,0
 checkbox,保護者記載欄_利用中3,0
-checkbox,保護者記載欄_利用申込中3,0
+checkbox,保護者記載欄_申込中3,0

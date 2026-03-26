@@ -2,6 +2,8 @@
 
 日本の自治体の就労証明書Excelフォーマットを解析し、全テキスト入力フィールドとチェックボックスのセルアドレスをJSON形式で返すUiPathエージェントと、解析結果に基づいてExcelに自動入力するRPAワークフロー
 
+[Qiita記事](https://qiita.com/hidecha/items/7e45924aeaeb37e197bd)
+
 ## 機能
 
 - 自治体の就労証明書Excel形式ファイルをURLからダウンロード
@@ -36,11 +38,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```powershell
 # リポジトリのクローン
 git clone https://github.com/hidecha/employment-certificate.git
-cd employment-certificate
+cd employment-certificate/Agent
 
-# Python環境と依存関係のインストール（Agentディレクトリ）
-cd Agent
-uv sync
+# Python仮想環境
+uv venv
 
 # 仮想環境の有効化
 # Windows (PowerShell)
@@ -48,16 +49,17 @@ uv sync
 
 # macOS/Linux
 source .venv/bin/activate
+
+# 依存関係のインストール
+uv sync
 ```
 
 ### 3. 環境設定
 
-1. UiPath CLIでログイン：
-   ```powershell
-   uipath auth
-   ```
-
-2. 生成された認証情報は `.env` ファイルに自動反映
+UiPath CLIでログイン
+```powershell
+uipath auth
+```
 
 ## 使用方法
 
@@ -99,12 +101,7 @@ uipath run agent -f input.json
 
 ### RPA（Excel自動入力ワークフロー）
 
-UiPath Studioで `RPA/Main.xaml` を開いて実行するか、CLIで実行：
-
-```powershell
-cd RPA
-uipath run process
-```
+UiPath Studioで `RPA/Main.xaml` を開いて実行
 
 #### 入力パラメータ
 
