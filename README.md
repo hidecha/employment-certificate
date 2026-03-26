@@ -35,8 +35,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```powershell
 # リポジトリのクローン
-git clone https://github.com/your-username/analyze-shuroushomei.git
-cd analyze-shuroushomei
+git clone https://github.com/hidecha/employment-certificate.git
+cd employment-certificate
 
 # Python環境と依存関係のインストール（Agentディレクトリ）
 cd Agent
