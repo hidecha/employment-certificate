@@ -263,6 +263,27 @@ def _get_label_end_col(ws, row: int, col: int) -> int:
 # Municipality detection from content
 # ---------------------------------------------------------------------------
 
+def _select_form_sheet(wb) -> 'openpyxl.worksheet.worksheet.Worksheet':
+    """就労証明書のフォームシートを選択する。
+
+    括弧付きプレフィックス（案内・記載例など）のないシートを優先し、
+    見つからない場合は先頭シートにフォールバックする。
+    """
+    _SKIP_SHEETS = {'プルダウンリスト', '記載要領'}
+    candidates = []
+    for ws in wb.worksheets:
+        title = ws.title.strip()
+        if title in _SKIP_SHEETS:
+            continue
+        # 全角括弧プレフィックスを除外したシートを優先
+        if not re.match(r'^[（(].+[）)]', title):
+            candidates.append(ws)
+    if candidates:
+        return candidates[0]
+    # フォールバック: 先頭シート
+    return wb.worksheets[0]
+
+
 def extract_municipality_from_content(ws) -> str:
     """ワークシートの内容から自治体名を推測する"""
     for row in range(1, 10):
@@ -818,7 +839,7 @@ def _parse_guardian_section(ws, mapping: dict) -> None:
 def analyze_certificate(workbook_path: str) -> dict[str, str | None]:
     """就労証明書を解析して全フィールドのマッピングを作成"""
     wb = openpyxl.load_workbook(workbook_path)
-    ws = wb.worksheets[0]
+    ws = _select_form_sheet(wb)
     mapping = {}
 
     mapping['自治体'] = extract_municipality_from_content(ws)
@@ -1219,16 +1240,19 @@ def main():
 
     mapping = analyze_certificate(workbook_path)
     wb = openpyxl.load_workbook(workbook_path)
-    ws = wb.worksheets[0]
+    ws = _select_form_sheet(wb)
     checkboxes = find_all_checkboxes(ws)
 
     verify_and_repair(ws, mapping, checkboxes)
 
     municipality = mapping.pop('自治体', '不明')
 
+    sheet_name = ws.title
+
     if json_mode:
         output = {
             "municipality": municipality,
+            "sheet_name": sheet_name,
             "text": mapping,
             "checkbox": checkboxes,
         }
@@ -1236,6 +1260,7 @@ def main():
         return
 
     print(f'Analyzing: {Path(workbook_path).name}')
+    print(f'  Sheet: {sheet_name}')
     print(f'  Municipality: {municipality}')
     print(f'  Found {len(mapping)} text input fields')
     for k, v in sorted(mapping.items()):

@@ -150,8 +150,11 @@ uipath run agent -f input.json
 
 ### テスト
 
+Agent venv の Python を使うこと（Python 3.11+ の型ヒント構文を使用しているため）。
+
 ```bash
-python3 skill/scripts/analyze_shuroushomei.py <file>.xlsx --json
+# プロジェクトルートから実行
+Agent/.venv/bin/python Agent/skill/scripts/analyze_shuroushomei.py <file>.xlsx --json
 ```
 
 ## コーディング規約

@@ -61,6 +61,7 @@ class Input(BaseModel):
 class State(BaseModel):
     url: str
     municipality: str = "不明"
+    sheet_name: str = ""
     text: dict = {}
     checkbox: dict = {}
     error: str | None = None
@@ -74,6 +75,7 @@ class State(BaseModel):
 
 class Output(BaseModel):
     municipality: str = "不明"
+    sheet_name: str = ""
     text: dict = {}
     checkbox: dict = {}
     error: str | None = None
@@ -266,7 +268,7 @@ _SKILL_INSTRUCTIONS = (
     "2. write_text_file でスクリプトを修正\n"
     "3. run_analyze_shuroushomei を再実行\n\n"
     "最終回答はJSON形式のみを返してください（説明文は不要）。\n"
-    'JSON形式: {"municipality": "自治体名", "text": {...}, "checkbox": {...}}'
+    'JSON形式: {"municipality": "自治体名", "sheet_name": "シート名", "text": {...}, "checkbox": {...}}'
 )
 
 _EVALUATOR_INSTRUCTIONS = (
@@ -330,10 +332,12 @@ async def node_skill(state: State) -> dict:
     text = parsed.get("text", {})
     checkbox = parsed.get("checkbox", {})
     raw_municipality = parsed.get("municipality", "不明")
+    sheet_name = parsed.get("sheet_name", "")
     excel_path = _find_downloaded_excel() or ""
 
     logger.info(
         f"[node_skill] 結果: municipality={raw_municipality}, "
+        f"sheet_name={sheet_name!r}, "
         f"text={len(text)}件, checkbox={len(checkbox)}件"
     )
 
@@ -341,6 +345,7 @@ async def node_skill(state: State) -> dict:
         "text": text,
         "checkbox": checkbox,
         "raw_municipality": raw_municipality,
+        "sheet_name": sheet_name,
         "excel_path": excel_path,
     }
 
