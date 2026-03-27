@@ -891,29 +891,16 @@ def analyze_certificate(workbook_path: str) -> dict[str, str | None]:
 # Comprehensive checkbox detection
 # ---------------------------------------------------------------------------
 
-_SECTION_NAME_MAP = {
-    '雇用（予定）期間等': '雇用期間',
-    '雇用の形態': '雇用形態',
-    '就労時間（固定就労の場合）': '就労時間',
-    '就労時間（変則就労の場合）': '変則就労',
-    '産前･産後休業の取得': '産前産後休業',
-    '産前・産後休業の取得': '産前産後休業',
-    '育児休業の取得': '育児休業',
-    '産休・育休以外の休業の取得': '産休育休以外',
-    '復職（予定）年月日': '復職年月日',
-    '育児のための短時間勤務制度利用有無': '短時間勤務',
-    '保育士等としての勤務実態の有無': '保育士等勤務実態有無',
-    '（雇用契約の）満了後の更新の有無': '雇用契約満了後更新有無',
-    '入所の内定時における育児休業の短縮の可否': '入所内定時育休短縮可否',
-    '育児休業の延長の可否': '育休延長可否',
-    '保護者記載欄': '保護者記載欄',
-    '保護者記入欄': '保護者記載欄',
-}
+def _load_section_name_map() -> tuple[dict[str, str], list[tuple[str, ...]]]:
+    """section_name_map.json からセクション名マッピングとキーワードフォールバックを読み込む。"""
+    json_path = Path(__file__).parent / 'section_name_map.json'
+    with open(json_path, encoding='utf-8') as f:
+        data = json.load(f)
+    name_map = data['section_name_map']
+    fallbacks = [tuple(fb) for fb in data['keyword_fallbacks']]
+    return name_map, fallbacks
 
-_KEYWORD_FALLBACKS = [
-    ('入所', '育休', '短縮', '入所内定時育休短縮可否'),
-    ('育休', '延長', '可否', '育休延長可否'),
-]
+_SECTION_NAME_MAP, _KEYWORD_FALLBACKS = _load_section_name_map()
 
 
 def _normalize_section_name(raw: str) -> str:
@@ -950,6 +937,7 @@ def _detect_checkbox_label(ws, row: int, col: int) -> str | None:
         label = label.rstrip('（(')
         label = label.replace('（第一希望）', '').replace('(第一希望)', '')
         label = label.replace('（第1希望）', '').replace('(第1希望)', '')
+        label = label.replace('有（見込み）', '有（予定）').replace('有(見込み)', '有（予定）')
     return label
 
 
