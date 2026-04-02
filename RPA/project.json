@@ -1,27 +1,27 @@
 {
   "name": "就労証明書Demo",
-  "projectId": "16a01d82-6cb3-497f-8639-40f45d784b48",
-  "description": "就労証明書自動作成のデモ",
+  "projectId": "98a6c162-2d45-4a4f-a43a-6616233064df",
+  "description": "就労証明書デモ",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.Excel.Activities": "[3.3.1]",
-    "UiPath.System.Activities": "[25.10.5]",
-    "UiPath.UIAutomation.Activities": "[25.10.24]",
-    "UiPath.WebAPI.Activities": "[2.4.0]"
+    "UiPath.Excel.Activities": "[3.4.1]",
+    "UiPath.System.Activities": "[25.12.2]",
+    "UiPath.UIAutomation.Activities": "[24.10.14]",
+    "UiPath.WebAPI.Activities": "[1.21.1]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
-  "studioVersion": "25.10.4.0",
-  "projectVersion": "1.0.6",
+  "studioVersion": "24.10.19.0",
+  "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
     "isPausable": true,
     "isAttended": false,
-    "requiresUserInteraction": true,
+    "requiresUserInteraction": false,
     "supportsPersistence": true,
-    "workflowSerialization": "NewtonsoftJson",
+    "workflowSerialization": "DataContract",
     "excludedLoggedData": [
       "Private:*",
       "*password*"
@@ -36,6 +36,7 @@
     "projectProfile": "Developement",
     "outputType": "Process",
     "libraryOptions": {
+      "includeOriginalXaml": false,
       "privateWorkflows": []
     },
     "processOptions": {
@@ -48,7 +49,7 @@
   "entryPoints": [
     {
       "filePath": "Main.xaml",
-      "uniqueId": "88c0c223-3bd7-4624-8163-4488b04c51a0",
+      "uniqueId": "43b23737-ecdd-4a3f-bfcc-b095777ee90f",
       "input": [],
       "output": []
     }
@@ -56,5 +57,5 @@
   "isTemplate": false,
   "templateProjectData": {},
   "publishData": {},
-  "targetFramework": "Windows"
+  "targetFramework": "Portable"
 }

@@ -1,6 +1,6 @@
 {
   "Name": "就労証明書Demo",
   "ProjectType": "Process",
-  "Description": "就労証明書自動作成のデモ",
+  "Description": "空のプロジェクトです。",
   "MainFile": "Main.xaml"
 }

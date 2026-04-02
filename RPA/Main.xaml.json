@@ -10,7 +10,7 @@
       "DisplayName": "url",
       "Category": null,
       "Tooltip": null,
-      "Placeholder": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/8d3237c0-5ca3-4dce-85ef-5497c83505f7/ce931ab9/20260304_policies_hoiku_shugyoshomeisho_02.xlsx",
+      "Placeholder": null,
       "Widget": null,
       "IsRequired": false,
       "IsPrincipal": true,
@@ -18,8 +18,32 @@
       "DataSourceItems": null
     },
     {
-      "Name": "csv",
-      "DisplayName": "csv",
+      "Name": "output_excelpath",
+      "DisplayName": "output_excelpath",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "folderpath",
+      "DisplayName": "folderpath",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": ".\\output",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "input_csvpath",
+      "DisplayName": "input_csvpath",
       "Category": null,
       "Tooltip": null,
       "Placeholder": "input\\sample_data.csv",

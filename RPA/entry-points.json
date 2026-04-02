@@ -3,19 +3,36 @@
   "entryPoints": [
     {
       "filePath": "Main.xaml",
-      "uniqueId": "88c0c223-3bd7-4624-8163-4488b04c51a0",
+      "uniqueId": "43b23737-ecdd-4a3f-bfcc-b095777ee90f",
       "type": "process",
       "input": {
         "type": "object",
         "properties": {
           "url": {
-            "type": "string"
+            "type": "string",
+            "x-default-expression": "\"\"",
+            "default": ""
           },
-          "csv": {
-            "type": "string"
+          "folderpath": {
+            "type": "string",
+            "x-default-expression": "\".\\output\"",
+            "default": ".\\output"
+          },
+          "input_csvpath": {
+            "type": "string",
+            "x-default-expression": "\".\\input\\sample_data.csv\"",
+            "default": ".\\input\\sample_data.csv"
           }
         },
         "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "output_excelpath": {
+            "type": "string"
+          }
+        }
       }
     }
   ]
