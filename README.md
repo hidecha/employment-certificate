@@ -108,7 +108,8 @@ UiPath Studioで `RPA/Main.xaml` を開いて実行
 | パラメータ | 説明 | 例 |
 |-----------|------|-----|
 | `url` | 就労証明書ExcelのURL | `https://example.com/shuroushomei.xlsx` |
-| `csv` | 入力データCSVのパス | `input\sample_data.csv` |
+| `input_csvpath` | 入力データCSVのファイルパス | `C:\input\sample_data.csv` |
+| `folderpath` | 出力データCSVのフォルダーパス | `C:\output` |
 
 #### CSVデータ形式
 
